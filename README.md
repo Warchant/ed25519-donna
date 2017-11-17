@@ -9,6 +9,22 @@ and [Bo-Yin Yang](http://www.iis.sinica.edu.tw/pages/byyang/).
 This project provides performant, portable 32-bit & 64-bit implementations. All implementations are 
 of course constant time in regard to secret data.
 
+# warchant note:
+For some reason  `test.c` fails with 
+
+```C++
+34394 ticks/public key generation
+36473 ticks/signature
+117273 ticks/signature verification
+33329 ticks/curve25519 basepoint scalarmult
+failed to generate expected result
+want: 51,e7,68,e0,f7,a1,88,45,de,a1,cb,d9,37,d4,78,53,1b,95,db,be,66,59,29,3b,94,51,2f,bc,0d,66,ba,3f,
+got : 82,2c,fc,66,00,c0,f0,5c,ab,d8,3b,35,a3,e5,41,4b,f8,eb,64,a1,17,c1,a9,22,2f,ab,bd,f8,31,b1,c3,1d,
+diff: d3,cb,94,86,f7,61,78,19,75,79,f0,ec,94,31,39,18,e3,7e,bf,1f,71,98,80,19,bb,fa,92,44,3c,d7,79,22,
+```
+
+
+
 #### Performance
 
 SSE2 code and benches have not been updated yet. I will do those next.
