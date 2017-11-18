@@ -1,12 +1,24 @@
 cmake_minimum_required(VERSION 3.6)
-project(ed25519 C)
+project(ed25519 C CXX)
 
-set(CMAKE_BUILD_TYPE "Release")
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
+SET(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+SET(CMAKE_C_FLAGS_RELEASE "-O3 -m64 -c")
+SET(CMAKE_C_FLAGS_DEBUG "-O0 -Wextra -Werror -g")
 
-add_definitions("-m64")
-add_definitions("-O3")
-add_definitions("-c")
 
+# dependencies
+find_package(PackageHandleStandardArgs)
+include(ExternalProject)
+set_directory_properties(PROPERTIES
+    EP_PREFIX ${PROJECT_SOURCE_DIR}/external
+    )
+#find_package(keccak)
+find_package(benchmark)
+find_package(gtest)
+
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(ed25519 SHARED
     ed25519.c
@@ -29,9 +41,6 @@ else()
       )
 endif()
 
-add_executable(ed25519-test
-    test.c
-    )
-target_link_libraries(ed25519-test
-    ed25519
-    )
+include(modules/functions.cmake)
+add_subdirectory(test)
+add_subdirectory(benchmark)

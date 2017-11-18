@@ -1,3 +1,9 @@
 [submodule "keccak"]
 	path = modules/KeccakCodePackage
 	url = https://github.com/gvanas/KeccakCodePackage
+[submodule "gtest"]
+	path = modules/googletest
+	url = https://github.com/google/googletest
+[submodule "benchmark"]
+	path = modules/benchmark
+	url = https://github.com/google/benchmark
